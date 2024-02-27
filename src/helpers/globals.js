@@ -1,4 +1,6 @@
-const FILE_NAME = `./outputs/output-${new Date()
+const DIR_PATH = "./outputs";
+
+const FILE_NAME = `${DIR_PATH}/output-${new Date()
   .toLocaleString("en-US", {
     year: "numeric",
     month: "2-digit",
@@ -16,4 +18,4 @@ const FILE_NAME = `./outputs/output-${new Date()
 
 
 
-export { FILE_NAME };
+export { DIR_PATH, FILE_NAME };

@@ -1,18 +1,16 @@
-import fs from "fs";
 import { setTimeout } from "timers/promises";
 
-import { FILE_NAME } from "./helpers/globals.js";
 import initCluster from "./helpers/initCluster.js";
 import writeFormattedPage from "./helpers/writeFormattedPage.js";
 import { extractDataFromPage } from "./helpers/extractDataFromPage.js";
+import { initFileDir } from "./helpers/handleFileDir.js";
 
 export default async function navigate({ BASE_URL, query, workers }) {
   try {
+    initFileDir();
     const cluster = await initCluster(workers);
     let noMoreTasks = false;
     let index = 1;
-    //reset the output file
-    fs.writeFileSync(FILE_NAME, "");
 
     await cluster.task(async ({ page, data: url }) => {
       const extractionResult = await extractDataFromPage({ page, url });

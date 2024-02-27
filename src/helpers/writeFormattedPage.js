@@ -1,10 +1,12 @@
-import fs from "fs";
+import { appendDataToFile } from "./handleFileDir.js";
 
-import { FILE_NAME } from "./globals.js";
-
-
-export default function writeFormattedPage({ title, content, bookLocation, pageNum, ref }) {
-  
+export default function writeFormattedPage({
+  title,
+  content,
+  bookLocation,
+  pageNum,
+  ref,
+}) {
   //get the length of the content
   const lineLength = content.split("\n")[0].length;
   let result = "";
@@ -13,7 +15,7 @@ export default function writeFormattedPage({ title, content, bookLocation, pageN
   for (let i = 0; i < 2; i++)
     for (let j = 0; j < lineLength; j++) result += "=";
 
-  const formatedData = result.concat(
+  const formattedData = result.concat(
     [
       "\n\n\n\n",
       `\t\t\t${ref}`,
@@ -25,7 +27,7 @@ export default function writeFormattedPage({ title, content, bookLocation, pageN
     ].join("\n\n\n\n")
   );
 
-  fs.appendFileSync(FILE_NAME, formatedData);
+  appendDataToFile(formattedData);
 
   return;
 }
