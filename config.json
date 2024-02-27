@@ -1,0 +1,5 @@
+{
+  "BASE_URL": "https://libraryofbabel.info/bookmark.cgi",
+  "query": "your query here",
+  "workers": 25
+}
