@@ -3,11 +3,11 @@ import { setTimeout } from "timers/promises";
 import initCluster from "./helpers/initCluster.js";
 import writeFormattedPage from "./helpers/writeFormattedPage.js";
 import { extractDataFromPage } from "./helpers/extractDataFromPage.js";
-import { initFileDir } from "./helpers/handleFileDir.js";
+import { initDir } from "./helpers/handleFileDir.js";
 
 export default async function navigate({ BASE_URL, query, workers }) {
   try {
-    initFileDir();
+    initDir();
     const cluster = await initCluster(workers);
     let noMoreTasks = false;
     let index = 1;

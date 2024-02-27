@@ -2,11 +2,9 @@ import fs from "fs";
 
 import { DIR_PATH, FILE_NAME } from "./globals.js";
 
-export function initFileDir() {
+export function initDir() {
   //create the output directory if it doesn't exist
   if (!fs.existsSync(DIR_PATH)) fs.mkdirSync(DIR_PATH);
-  //reset the output file
-  fs.writeFileSync(FILE_NAME, "");
   return;
 }
 
