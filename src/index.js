@@ -1,4 +1,4 @@
 import navigate from "./navigate.js";
-import config from "../config.json" assert { type: "json" };
+import { BASE_URL, query, workers } from "./helpers/globals.js";
 
-navigate(config);
+navigate({ BASE_URL, query, workers });
