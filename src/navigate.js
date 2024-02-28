@@ -5,10 +5,10 @@ import writeFormattedPage from "./helpers/writeFormattedPage.js";
 import { extractDataFromPage } from "./helpers/extractDataFromPage.js";
 import { initDir } from "./helpers/handleFileDir.js";
 
-export default async function navigate({ BASE_URL, query, workers }) {
+export default async function navigate({ BASE_URL, QUERY, WORKERS }) {
   try {
     initDir();
-    const cluster = await initCluster(workers);
+    const cluster = await initCluster(WORKERS);
     let noMoreTasks = false;
     let index = 1;
 
@@ -23,11 +23,11 @@ export default async function navigate({ BASE_URL, query, workers }) {
       console.log(url);
       const { data } = extractionResult;
       writeFormattedPage(data);
-      for (let i = 0; i < workers; i++)
-        cluster.queue(`${BASE_URL}?${query}:${index++}`);
+      for (let i = 0; i < WORKERS; i++)
+        cluster.queue(`${BASE_URL}?${QUERY}:${index++}`);
     });
 
-    cluster.queue(`${BASE_URL}?${query}`);
+    cluster.queue(`${BASE_URL}?${QUERY}`);
 
     //listen to the cluster and close it when there are no more tasks
     const clusterListener = setInterval(async () => {

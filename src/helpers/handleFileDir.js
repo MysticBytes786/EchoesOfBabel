@@ -1,6 +1,6 @@
 import fs from "fs";
 
-import { DIR_PATH, FILE_NAME, query } from "./globals.js";
+import { DIR_PATH, FILE_NAME, QUERY } from "./globals.js";
 
 let FILE_VARIANT;
 
@@ -9,7 +9,7 @@ export function initDir() {
   if (!fs.existsSync(DIR_PATH)) fs.mkdirSync(DIR_PATH);
   FILE_VARIANT = fs
     .readdirSync(DIR_PATH)
-    .filter((file) => file.includes(query)).length;
+    .filter((file) => file.includes(QUERY)).length;
 
   return;
 }
